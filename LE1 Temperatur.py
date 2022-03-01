@@ -38,49 +38,95 @@ BaselDekade["Dekade"] = BaselDekade.index
 # plt.xticks(np.arange(0, len(BaselYearly)+1, 20))
 # plt.ylabel("Temperatur in Grad Celsius")
 
-BaselDekade.plot.bar("Dekade", "Lufttemperatur Tagesmittel", legend=None, rot=0)
-plt.title("Dekaden - Jährliche Durchschnittstemperatur in Basel")
-plt.xticks(np.arange(0, len(BaselDekade)+1, 5))
-plt.ylabel("Temperatur in Grad Celsius")
+# BaselDekade.plot.bar("Dekade", "Lufttemperatur Tagesmittel", legend=None, rot=0)
+# plt.title("Dekaden - Jährliche Durchschnittstemperatur in Basel")
+# plt.xticks(np.arange(0, len(BaselDekade)+1, 5))
+# plt.ylabel("Temperatur in Grad Celsius")
 
 #########################
 
-Jfj = pd.read_csv("DatenJungfraujoch.csv", sep = ";")
-Jfj["Datum"] = pd.to_datetime(Jfj["date"], format='%Y%m%d')
-Jfj["Lufttemperatur Tagesmittel"] = pd.to_numeric(Jfj["Lufttemperatur Tagesmittel"], errors='coerce')
+Bern = pd.read_csv("DatenBern.csv", sep = ";")
+Bern["Datum"] = pd.to_datetime(Bern["date"], format='%Y%m%d')
+Bern["Lufttemperatur Tagesmittel"] = pd.to_numeric(Bern["Lufttemperatur Tagesmittel"], errors='coerce')
 
-JfjMonthly = Jfj.groupby(pd.Grouper(key='Datum',freq='M')).mean()
-JfjMonthly["Datum"] = JfjMonthly.index
-JfjYearly = JfjMonthly.groupby(pd.Grouper(key='Datum',freq='Y')).mean()
-JfjYearly["Datum"] = JfjYearly.index
-JfjYearly.index = pd.to_datetime(JfjYearly.index)
-JfjYearly["Jahr"] = pd.DatetimeIndex(JfjYearly["Datum"]).year
-JfjYearly["Dekade"] = round(JfjYearly["Jahr"] // 10, 0) * 10
-JfjDekade = JfjYearly.groupby("Dekade").mean()
-JfjDekade["Dekade"] = JfjDekade.index
+BernMonthly = Bern.groupby(pd.Grouper(key='Datum',freq='M')).mean()
+BernMonthly["Datum"] = BernMonthly.index
+BernYearly = BernMonthly.groupby(pd.Grouper(key='Datum',freq='Y')).mean()
+BernYearly["Datum"] = BernYearly.index
+BernYearly.index = pd.to_datetime(BernYearly.index)
+BernYearly["Jahr"] = pd.DatetimeIndex(BernYearly["Datum"]).year
+BernYearly["Dekade"] = round(BernYearly["Jahr"] // 10, 0) * 10
+BernDekade = BernYearly.groupby("Dekade").mean()
+BernDekade["Dekade"] = BernDekade.index
 
-# JfjYearly.plot("Datum", "Lufttemperatur Tagesmittel")
-# plt.legend(["Jährliche Durchschnittstemperatur auf dem Jungfraujoch"], prop={'size': 10})
+# BernDekade.plot("Datum", "Lufttemperatur Tagesmittel", legend=None)
+# plt.title("Jährliche Durchschnittstemperatur in Bern")
+# plt.ylabel("Temperatur in Grad Celsius")
 
-# JfjYearly.plot.bar("Jahr", "Lufttemperatur Tagesmittel", rot=0)
-# plt.legend(["Jährliche Durchschnittstemperatur auf dem Jungfraujoch"], prop={'size': 10})
+# BernYearly.plot.bar("Jahr", "Lufttemperatur Tagesmittel", rot=0)
+# plt.legend(["Jährliche Durchschnittstemperatur in Bern"], prop={'size': 10})
 # plt.xticks(np.arange(0, len(JfjYearly)+1, 20))
 
-# JfjDekade.plot.bar("Dekade", "Lufttemperatur Tagesmittel", rot=0)
-# plt.legend(["10 - Jährliche Durchschnittstemperatur auf dem Jungfraujoch"], prop={'size': 10})
+# BernDekade.plot.bar("Dekade", "Lufttemperatur Tagesmittel", rot=0)
+# plt.legend(["10 - Jährliche Durchschnittstemperatur in Bern"], prop={'size': 10})
 # plt.xticks(np.arange(0, len(JfjDekade)+1, 5))
 
 
 #########################
 
-BaselVeränderung = BaselDekade.loc[2010, "Lufttemperatur Tagesmittel"] - BaselDekade.loc[1940, "Lufttemperatur Tagesmittel"]
-JfjVeränderung = JfjDekade.loc[2010, "Lufttemperatur Tagesmittel"] - JfjDekade.loc[1940, "Lufttemperatur Tagesmittel"]
+Lugano = pd.read_csv("DatenLugano.csv", sep = ";")
+Lugano["Datum"] = pd.to_datetime(Lugano["date"], format='%Y%m%d')
+Lugano["Lufttemperatur Tagesmittel"] = pd.to_numeric(Lugano["Lufttemperatur Tagesmittel"], errors='coerce')
 
-# fig = plt.figure()
-# ax = fig.add_axes([0,0,1,1])
-# Ort = ["Basel", "Jungfraujoch"]
-# Wert = [BaselVeränderung, JfjVeränderung]
-# ax.bar(Ort, Wert)
-# plt.title("Zunahme der durchschnittlichen Temperatur der Dekaden 1940 und 2010")
-# ax.set_ylabel("Differenz in Grad Celsius")
-# plt.show()
+LuganoMonthly = Lugano.groupby(pd.Grouper(key='Datum',freq='M')).mean()
+LuganoMonthly["Datum"] = LuganoMonthly.index
+LuganoYearly = LuganoMonthly.groupby(pd.Grouper(key='Datum',freq='Y')).mean()
+LuganoYearly["Datum"] = LuganoYearly.index
+LuganoYearly.index = pd.to_datetime(LuganoYearly.index)
+LuganoYearly["Jahr"] = pd.DatetimeIndex(LuganoYearly["Datum"]).year
+LuganoYearly["Dekade"] = round(LuganoYearly["Jahr"] // 10, 0) * 10
+LuganoDekade = LuganoYearly.groupby("Dekade").mean()
+LuganoDekade["Dekade"] = LuganoDekade.index
+
+LuganoYearly.plot("Datum", "Lufttemperatur Tagesmittel", legend=None)
+plt.title("Jährliche Durchschnittstemperatur in Lugano")
+plt.ylabel("Temperatur in Grad Celsius")
+
+# JfjYearly.plot.bar("Jahr", "Lufttemperatur Tagesmittel", rot=0)
+# plt.legend(["Jährliche Durchschnittstemperatur in Lugano"], prop={'size': 10})
+# plt.xticks(np.arange(0, len(JfjYearly)+1, 20))
+
+# JfjDekade.plot.bar("Dekade", "Lufttemperatur Tagesmittel", rot=0)
+# plt.legend(["10 - Jährliche Durchschnittstemperatur in Bern"], prop={'size': 10})
+# plt.xticks(np.arange(0, len(JfjDekade)+1, 5))
+
+#########################
+
+ÜbersichtTemperaturBasel = BaselYearly[["Lufttemperatur Tagesmittel"]]
+ÜbersichtTemperaturBasel = ÜbersichtTemperaturBasel.rename(columns={"Lufttemperatur Tagesmittel": "Basel", })
+ÜbersichtTemperaturBern = BernYearly[["Lufttemperatur Tagesmittel"]]
+ÜbersichtTemperaturBern = ÜbersichtTemperaturBern.rename(columns={"Lufttemperatur Tagesmittel": "Bern", })
+ÜbersichtTemperaturLugano = LuganoYearly[["Lufttemperatur Tagesmittel"]]
+ÜbersichtTemperaturLugano = ÜbersichtTemperaturLugano.rename(columns={"Lufttemperatur Tagesmittel": "Lugano", })
+
+# Übersicht = ÜbersichtTemperaturBasel.join(ÜbersichtTemperaturBern)
+# Übersicht = Übersicht.join(ÜbersichtTemperaturLugano)
+# Übersicht = Übersicht['1933-12-31' :'2021-12-31']
+# Übersicht.plot()
+
+
+#########################
+
+BaselVeränderung = BaselDekade.loc[2010, "Lufttemperatur Tagesmittel"] - BaselDekade.loc[1940, "Lufttemperatur Tagesmittel"]
+BernVeränderung = BernDekade.loc[2010, "Lufttemperatur Tagesmittel"] - BernDekade.loc[1940, "Lufttemperatur Tagesmittel"]
+LuganoVeränderung = LuganoDekade.loc[2010, "Lufttemperatur Tagesmittel"] - LuganoDekade.loc[1940, "Lufttemperatur Tagesmittel"]
+
+
+fig = plt.figure()
+ax = fig.add_axes([0,0,1,1])
+Ort = ["Basel", "Bern", "Lugano"]
+Wert = [BaselVeränderung, BernVeränderung, LuganoVeränderung]
+ax.bar(Ort, Wert)
+plt.title("Zunahme der durchschnittlichen Temperatur der Dekaden 1940 und 2010")
+ax.set_ylabel("Differenz in Grad Celsius")
+plt.show()
