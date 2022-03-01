@@ -21,6 +21,12 @@ Basel["Gesamtbewölkung"] = pd.to_numeric(Basel["Gesamtbewölkung"], errors='coe
 
 # Basel.hist(column = "Luftdruck", bins = 30)
 # plt.title("Verteilung des Luftdruck in Basel seit 1864")
+# plt.ylabel("Anzahl Tage")
+# plt.xlabel("Luftdruck")
+
 
 Basel["Luftdruck"].plot.density()
 plt.title("Verteilung des Luftdruck in Basel seit 1864")
+plt.ylabel("Dichte")
+plt.xlabel("Luftdruck")
+
