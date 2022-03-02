@@ -18,15 +18,18 @@ Basel["Niederschlag"] = pd.to_numeric(Basel["Niederschlag"], errors='coerce')
 Basel["Luftdruck"] = pd.to_numeric(Basel["Luftdruck"], errors='coerce')
 Basel["Gesamtbewölkung"] = pd.to_numeric(Basel["Gesamtbewölkung"], errors='coerce')
 
+def Histogramm():
+    Basel.hist(column = "Luftdruck", bins = 30)
+    plt.title("Verteilung des Luftdruck in Basel seit 1864")
+    plt.ylabel("Anzahl Tage")
+    plt.xlabel("Luftdruck")
+    
+# Histogramm()
 
-# Basel.hist(column = "Luftdruck", bins = 30)
-# plt.title("Verteilung des Luftdruck in Basel seit 1864")
-# plt.ylabel("Anzahl Tage")
-# plt.xlabel("Luftdruck")
+def Density():
+    Basel["Luftdruck"].plot.density()
+    plt.title("Verteilung des Luftdruck in Basel seit 1864")
+    plt.ylabel("Dichte")
+    plt.xlabel("Luftdruck")
 
-
-Basel["Luftdruck"].plot.density()
-plt.title("Verteilung des Luftdruck in Basel seit 1864")
-plt.ylabel("Dichte")
-plt.xlabel("Luftdruck")
-
+Density()
