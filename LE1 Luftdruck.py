@@ -10,8 +10,10 @@ import numpy as np
 from scipy import stats
 from scipy.stats import norm
 import matplotlib.pyplot as plt
-import matplotlib.ticker as ticker
-import matplotlib.dates as mdates     
+import matplotlib.style as style
+
+style.use('seaborn-colorblind')
+# style.use('tableau-colorblind10')    
 
 Basel = pd.read_csv("DatenBasel.csv", sep = ";")
 Basel["Niederschlag"] = pd.to_numeric(Basel["Niederschlag"], errors='coerce')

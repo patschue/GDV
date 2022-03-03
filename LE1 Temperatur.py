@@ -8,7 +8,13 @@ Created on Wed Feb 23 17:17:16 2022
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-    
+import matplotlib.style as style
+import seaborn as sns
+
+
+# style.use('seaborn-colorblind')
+# style.use('tableau-colorblind10')
+# sns.color_palette("seaborn-colorblind")    
 
 #########################
 # Prepare Data Basel
@@ -105,6 +111,9 @@ def Linechart():
     
 # Linechart()
 
+Übersicht = ÜbersichtTemperaturBasel.join(ÜbersichtTemperaturBern)
+Übersicht = Übersicht.join(ÜbersichtTemperaturLugano)
+sns.lineplot(Übersicht, x = Übersicht.index)
 
 #########################
 # Barchart differences Dekaden
@@ -113,6 +122,7 @@ def Linechart():
 BaselVeränderung = BaselDekade.loc[2010, "Lufttemperatur Tagesmittel"] - BaselDekade.loc[1940, "Lufttemperatur Tagesmittel"]
 BernVeränderung = BernDekade.loc[2010, "Lufttemperatur Tagesmittel"] - BernDekade.loc[1940, "Lufttemperatur Tagesmittel"]
 LuganoVeränderung = LuganoDekade.loc[2010, "Lufttemperatur Tagesmittel"] - LuganoDekade.loc[1940, "Lufttemperatur Tagesmittel"]
+
 
 def BarchartDekaden():
     fig = plt.figure()
@@ -124,4 +134,12 @@ def BarchartDekaden():
     ax.set_ylabel("Differenz in Grad Celsius")
     plt.show()
     
-BarchartDekaden()
+# BarchartDekaden()
+
+def BarcharDekadenSeaborn():
+    Ort = ["Basel", "Bern", "Lugano"]
+    Wert = [BaselVeränderung, BernVeränderung, LuganoVeränderung]
+    ax = sns.barplot(x = Ort, y = Wert, palette = "colorblind")
+    ax.set(ylabel = "Differenz in Grad Celsius", title = "Zunahme der durchschnittlichen Temperatur der Dekaden 1940 und 2010")
+    
+# BarcharDekadenSeaborn()
