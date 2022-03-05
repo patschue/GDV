@@ -111,9 +111,29 @@ def Linechart():
     
 # Linechart()
 
-Übersicht = ÜbersichtTemperaturBasel.join(ÜbersichtTemperaturBern)
-Übersicht = Übersicht.join(ÜbersichtTemperaturLugano)
-sns.lineplot(Übersicht, x = Übersicht.index)
+def LinechartSeaborn():
+    Übersicht = ÜbersichtTemperaturBasel.join(ÜbersichtTemperaturBern)
+    Übersicht = Übersicht.join(ÜbersichtTemperaturLugano)
+    sns.lineplot(data = Übersicht, palette = "colorblind", dashes = False)
+    plt.ylim(ymin=0)
+    
+LinechartSeaborn()
+
+def LinechartSeabornDashes():
+    Übersicht = ÜbersichtTemperaturBasel.join(ÜbersichtTemperaturBern)
+    Übersicht = Übersicht.join(ÜbersichtTemperaturLugano)
+    sns.lineplot(data = Übersicht, palette = "colorblind")
+    plt.ylim(ymin=0)
+    
+# LinechartSeabornDashes()
+
+def LinechartSeabornMarkers():
+    Übersicht = ÜbersichtTemperaturBasel.join(ÜbersichtTemperaturBern)
+    Übersicht = Übersicht.join(ÜbersichtTemperaturLugano)
+    sns.lineplot(data = Übersicht, palette = "colorblind", markers = True, dashes = False)
+    plt.ylim(ymin=0)
+    
+# LinechartSeabornMarkers()
 
 #########################
 # Barchart differences Dekaden
