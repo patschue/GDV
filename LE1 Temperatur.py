@@ -117,7 +117,16 @@ def LinechartSeaborn():
     sns.lineplot(data = Übersicht, palette = "colorblind", dashes = False)
     plt.ylim(ymin=0)
     
-LinechartSeaborn()
+# LinechartSeaborn()
+
+def LinechartSeabornlabeloustide():
+    Übersicht = ÜbersichtTemperaturBasel.join(ÜbersichtTemperaturBern)
+    Übersicht = Übersicht.join(ÜbersichtTemperaturLugano)
+    sns.lineplot(data = Übersicht, palette = "colorblind", dashes = False)
+    plt.ylim(ymin=0)
+    plt.legend(bbox_to_anchor= (1.02, 1), loc ="upper left", borderaxespad = 0)
+    
+LinechartSeabornlabeloustide()
 
 def LinechartSeabornDashes():
     Übersicht = ÜbersichtTemperaturBasel.join(ÜbersichtTemperaturBern)
