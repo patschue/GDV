@@ -115,6 +115,7 @@ def LinechartSeaborn():
     Übersicht = ÜbersichtTemperaturBasel.join(ÜbersichtTemperaturBern)
     Übersicht = Übersicht.join(ÜbersichtTemperaturLugano)
     sns.lineplot(data = Übersicht, palette = "colorblind", dashes = False)
+    plt.ylabel("Temperatur in Grad Celsius")
     plt.ylim(ymin=0)
     
 # LinechartSeaborn()
@@ -124,14 +125,25 @@ def LinechartSeabornlabeloustide():
     Übersicht = Übersicht.join(ÜbersichtTemperaturLugano)
     sns.lineplot(data = Übersicht, palette = "colorblind", dashes = False)
     plt.ylim(ymin=0)
+    plt.ylabel("Temperatur in Grad Celsius")
     plt.legend(bbox_to_anchor= (1.02, 1), loc ="upper left", borderaxespad = 0)
     
-LinechartSeabornlabeloustide()
+# LinechartSeabornlabeloustide()
+
+def LinechartSeabornBadLabeling():
+    Übersicht = ÜbersichtTemperaturBasel.join(ÜbersichtTemperaturBern)
+    Übersicht = Übersicht.join(ÜbersichtTemperaturLugano)
+    sns.lineplot(data = Übersicht, palette = "colorblind", dashes = False)
+    plt.ylim(ymin=8, ymax=12)
+    plt.ylabel("Temperatur in Grad Celsius")
+    
+# LinechartSeabornBadLabeling()
 
 def LinechartSeabornDashes():
     Übersicht = ÜbersichtTemperaturBasel.join(ÜbersichtTemperaturBern)
     Übersicht = Übersicht.join(ÜbersichtTemperaturLugano)
     sns.lineplot(data = Übersicht, palette = "colorblind")
+    plt.ylabel("Temperatur in Grad Celsius")
     plt.ylim(ymin=0)
     
 # LinechartSeabornDashes()
@@ -140,6 +152,7 @@ def LinechartSeabornMarkers():
     Übersicht = ÜbersichtTemperaturBasel.join(ÜbersichtTemperaturBern)
     Übersicht = Übersicht.join(ÜbersichtTemperaturLugano)
     sns.lineplot(data = Übersicht, palette = "colorblind", markers = True, dashes = False)
+    plt.ylabel("Temperatur in Grad Celsius")
     plt.ylim(ymin=0)
     
 # LinechartSeabornMarkers()
@@ -155,7 +168,7 @@ LuganoVeränderung = LuganoDekade.loc[2010, "Lufttemperatur Tagesmittel"] - Luga
 
 def BarchartDekaden():
     fig = plt.figure()
-    ax = fig.add_axes([0,0,1,1])
+    # ax = fig.add_axes([0,0,1,1])
     Ort = ["Basel", "Bern", "Lugano"]
     Wert = [BaselVeränderung, BernVeränderung, LuganoVeränderung]
     ax.bar(Ort, Wert)
@@ -163,7 +176,7 @@ def BarchartDekaden():
     ax.set_ylabel("Differenz in Grad Celsius")
     plt.show()
     
-# BarchartDekaden()
+BarchartDekaden()
 
 def BarcharDekadenSeaborn():
     Ort = ["Basel", "Bern", "Lugano"]
