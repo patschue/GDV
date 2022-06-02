@@ -128,7 +128,7 @@ def LinechartSeabornlabeloustide():
     plt.ylabel("Temperatur in Grad Celsius")
     plt.legend(bbox_to_anchor= (1.02, 1), loc ="upper left", borderaxespad = 0)
     
-# LinechartSeabornlabeloustide()
+LinechartSeabornlabeloustide()
 
 def LinechartSeabornBadLabeling():
     Übersicht = ÜbersichtTemperaturBasel.join(ÜbersichtTemperaturBern)
@@ -176,7 +176,7 @@ def BarchartDekaden():
     ax.set_ylabel("Differenz in Grad Celsius")
     plt.show()
     
-BarchartDekaden()
+# BarchartDekaden()
 
 def BarcharDekadenSeaborn():
     Ort = ["Basel", "Bern", "Lugano"]
